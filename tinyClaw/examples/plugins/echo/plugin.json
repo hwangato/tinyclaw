@@ -1,0 +1,13 @@
+{
+    "id": "echo",
+    "name": "Echo Plugin",
+    "version": "1.0.0",
+    "type": "tool",
+    "command": "python",
+    "args": ["echo_plugin.py"],
+    "config": {
+        "prefix": "[Echo]"
+    },
+    "enabled": true,
+    "description": "示例插件：回显输入文本"
+}

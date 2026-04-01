@@ -1,0 +1,70 @@
+# TinyClaw 配置文件
+# 复制为 config.yaml 并填入你的配置
+
+# LLM 提供者
+provider:
+  api_key: ""                    # 或设置 OPENAI_API_KEY 环境变量
+  base_url: "https://api.openai.com/v1"
+  model: "gpt-4o-mini"
+
+# 工作目录
+workspace:
+  dir: "."
+  data_dir: "data"
+  skills_dir: "workspace/skills"
+
+# 消息渠道
+channels:
+  cli:
+    enabled: true
+
+  telegram:
+    enabled: false
+    token: ""                    # 或设置 TELEGRAM_BOT_TOKEN
+    trigger_word: "@claw"
+
+  discord:
+    enabled: false
+    token: ""                    # 或设置 DISCORD_BOT_TOKEN
+    trigger_word: "@claw"
+
+  feishu:
+    enabled: false
+    app_id: ""                   # 或设置 FEISHU_APP_ID
+    app_secret: ""               # 或设置 FEISHU_APP_SECRET
+    webhook_port: 9000
+
+# 安全策略
+policy:
+  filesystem:
+    allow_read: ["workspace/**", "data/**"]
+    deny_write: [".env", "*.key", "*.pem", "*.secret"]
+  network:
+    mode: "permissive"
+  tools:
+    deny: []
+
+# Docker 沙箱
+sandbox:
+  enabled: false
+  image: "python:3.12-slim"
+
+# 上下文压缩
+compaction:
+  max_tokens: 50000
+  target_tokens: 20000
+
+# Agent 配置
+agents:
+  default:
+    workspace: "workspace"
+    # 心跳间隔（秒），0 为禁用
+    heartbeat_interval: 0
+
+# MCP 服务器
+mcp:
+  config_file: ".mcp.json"
+
+# 插件目录
+plugins:
+  dir: "plugins"
